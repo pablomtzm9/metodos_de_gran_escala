@@ -14,11 +14,12 @@ print(sys.version)
 
 ### Dependencias:
 
+En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con dato sintéticos o tomar alguno otro como referencia, para poder desarrollar nuestra idea.
+
 ### Inputs/Outputs:
 
-* En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con dato sintéticos o tomar alguno otro como referencia, para poder desarrollar nuestra idea.
-* Para lo cual usaremos el [conjunto de precios de compra-venta de casas de la ciudad Ames, Iowa en Estados Unidos](https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/)
-* Entregable: Un notebook o notebooks que puedas presentar, desarrollando todos los pasos que seguiste para construir tu modelo.
+* Inputs: Usaremos el [conjunto de precios de compra-venta de casas de la ciudad Ames, Iowa en Estados Unidos](https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/)
+* Outputs: Un notebook o notebooks que puedas presentar, desarrollando todos los pasos que seguiste para construir tu modelo.
 
 ### Estructura:
 ------------
