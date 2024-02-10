@@ -1,1 +1,17 @@
+# .gitignore
 
+# Archivos de configuración.
+*.credentials.yaml
+
+# Archivos
+*.xlsx
+*.csv
+*.parquet
+*.txt
+*.xml
+*.json
+
+# Documentación
+*.docx
+*.pdf
+*.html
