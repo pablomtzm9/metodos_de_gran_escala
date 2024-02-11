@@ -27,22 +27,24 @@ En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con
 La estructura del proyecto se ve de la siguiente forma:
 
 ```
-└── project
-    ├── .gitignore
-    ├── README.md
-    ├── src
-    │   ├── .gitkeep
-    │   ├── __init__.py
-    │   ├── module1.py
-    │   └── module2.py
-    ├── data
-    │   ├── raw.csv
-    │   └── clean.csv
-    ├── tests
-    │   ├── .gitkeep
-    │   ├── .test1.py
-    │   └── .test2.py
-    └── main_program.py
+├── README.md
+├── data
+│   ├── base_general.csv
+│   ├── data_description.txt
+│   ├── descripcion
+│   ├── predicciones.xlsx
+│   ├── sample_submission.csv
+│   ├── test.csv
+│   └── train.csv
+├── models
+│   └── train_model.joblib
+├── notebooks
+│   └── 01_tarea_pablo_martinez.ipynb
+└── src
+    ├── inference.py
+    ├── prep.py
+    ├── scripts.py
+    └── train.py
 ```
 
 ### Ejecución:
