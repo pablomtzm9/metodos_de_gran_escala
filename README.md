@@ -48,8 +48,8 @@ La estructura del proyecto se ve de la siguiente forma:
 ### Ejecución:
 ------------
 
-    cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
-    py.test tests
+    sys.path.append('../src')
+    from scripts import perform_inference
 
 
 ### Instalación:
