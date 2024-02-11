@@ -48,9 +48,9 @@ La estructura del proyecto se ve de la siguiente forma:
 ### Ejecución:
 ------------
 
-    sys.path.append('../src')
-    from scripts import perform_inference
-
+    pylint scripts.py
+    # Your code has been rated at 10.00/10 (previous run: 7.75/10, +2.25)
+    
 
 ### Instalación:
 ------------
