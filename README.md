@@ -19,7 +19,7 @@ En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con
 ### Inputs/Outputs:
 
 * Inputs: Usaremos el [conjunto de precios de compra-venta de casas de la ciudad Ames, Iowa en Estados Unidos](https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/)
-* Outputs: Un notebook o notebooks que puedas presentar, desarrollando todos los pasos que seguiste para construir tu modelo.
+* Outputs: Archivo de excel con las predicciones solicitadas.
 
 ### Estructura:
 ------------
@@ -55,5 +55,5 @@ La estructura del proyecto se ve de la siguiente forma:
 ### Instalación:
 ------------
 
-    pip install -r requirements.txt
+    pip install -r scripts.py
 
