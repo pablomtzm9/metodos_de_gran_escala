@@ -6,9 +6,30 @@ Este código es para entrenar el modelo
 import os
 import argparse
 import pandas as pd
+import yaml
+import random
+import argparse
+import logging
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from joblib import dump
+from datetime import datetime
+
+# config.yaml
+# "../codigo/config.yaml"
+with open("/Users/pablomartinez/Documents/Maestria/Primavera 2024/Métodos de Gran Escala/Tareas/Tarea 3 PMM/codigo/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+now = datetime.now()
+date_time = now.strftime("%Y%m%d_%H%M%S")
+name_aux = f"codigo/logs/{date_time}_train.log"
+
+logging.basicConfig(
+    filename= name_aux,
+    level=logging.DEBUG,
+    filemode='w',
+    format='%(name)s - %(levelname)s - %(message)s')
+
 
 def load_data(data_dir):
     data_path = os.path.join(data_dir, 'base_general.csv')
@@ -24,7 +45,10 @@ def preprocess_data(data):
     return X, y
 
 def train_model(X, y):
-    model = RandomForestRegressor()
+    random.seed(config['modeling']['random_seed'])
+    model = RandomForestRegressor(n_estimators=config['modeling']['random_forest']['n_estimators'],
+                                  max_depth=config['modeling']['random_forest']['max_depth'],
+                                  min_samples_split=config['modeling']['random_forest']['min_samples_split'])
     model.fit(X, y)
     return model
 
@@ -39,17 +63,26 @@ def main():
     parser.add_argument("output_dir", help="Directory to save the trained model")
     args = parser.parse_args()
 
-    # Load data
-    data = load_data(args.data_dir)
+    try:
+        # Load data
+        data = load_data(args.data_dir)
+        logging.info("Lectura de data")
 
-    # Preprocess data
-    X, y = preprocess_data(data)
+        # Preprocess data
+        X, y = preprocess_data(data)
+        logging.info("Procesamiento de data")
 
-    # Train model
-    model = train_model(X, y)
+        # Train model
+        model = train_model(X, y)
+        logging.info("Creación del modelo")
 
-    # Save the trained model
-    save_model(model, args.output_dir)
+        # Save the trained model
+        save_model(model, args.output_dir)
+        logging.info("Guardar el modelo")
+
+    except: 
+        logging.error(f"ErrorElNombreDelPokemon: Lectura de data")
+    
 
 if __name__ == "__main__":
     main()

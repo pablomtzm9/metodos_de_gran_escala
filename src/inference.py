@@ -6,17 +6,36 @@ Este código es para realizar la inferencia del modelo
 
 import os
 import joblib
+import argparse
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import logging
 
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_absolute_error
+from datetime import datetime
 
 # Ejecución de la inferencia
 
-model = joblib.load("../models/train_model.joblib")
-data = pd.read_csv("../data/base_general.csv")
+try:
+    model = joblib.load("/Users/pablomartinez/Documents/Maestria/Primavera 2024/Métodos de Gran Escala/Tareas/Tarea 3 PMM/models/train_model.joblib")
+    data = pd.read_csv("/Users/pablomartinez/Documents/Maestria/Primavera 2024/Métodos de Gran Escala/Tareas/Tarea 3 PMM/data/base_general.csv")
+except:
+    logging.error(f"ErrorElNombreDelPokemon: Lectura de data")
+
+parser = argparse.ArgumentParser()
+parser.add_argument('print_resultados')
+args = parser.parse_args()
+now = datetime.now()
+date_time = now.strftime("%Y%m%d_%H%M%S")
+name_aux = f"codigo/logs/{date_time}_inference.log"
+
+logging.basicConfig(
+    filename= name_aux,
+    level=logging.DEBUG,
+    filemode='w',
+    format='%(name)s - %(levelname)s - %(message)s')
 
 def postprocess_data(data):
     # Your data preprocessing steps here
@@ -36,7 +55,13 @@ def prediccion(modelo,data):
 def main():
     # Prediccion
     y_pred = prediccion(model,data)
-    pd.DataFrame(y_pred).to_excel(excel_writer = r"../data/predicciones.xlsx")
+    row, col = y_pred.shape
+    try:
+        pd.DataFrame(y_pred).to_excel(excel_writer = r"/Users/pablomartinez/Documents/Maestria/Primavera 2024/Métodos de Gran Escala/Tareas/Tarea 3 PMM/data/predicciones.xlsx")
+        logging.info("Generación de predicciones.xlsx")
+        logging.debug(f"row, col = {row, col}")
+    except:
+        logging.error(f"ErrorElNombreDelPokemon: Impresion de base")
 
     # Real
     X_test, y_test = postprocess_data(data)
@@ -46,11 +71,11 @@ def main():
     print("Accuracy:", accuracy)
     mae = mean_absolute_error(list(y_test), list(y_pred))
     print("MAE:", mae)
-    plt.scatter(y_test, y_pred)
-    plt.xlabel("Actual Values")
-    plt.ylabel("Predicted Values")
-    plt.title("Actual vs Predicted Values")
-    plt.show()
+    if args.print_resultados == "plot":
+        print("Resultados Gráficos:")
+        plt.scatter(y_test, y_pred)
+        plt.xlabel("Actual Values")
+        plt.ylabel("Predicted Values")
+        plt.title("Actual vs Predicted Values")
+        plt.show()
 
-if __name__ == "__main__":
-    main()

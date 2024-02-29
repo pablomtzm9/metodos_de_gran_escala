@@ -6,15 +6,23 @@ Se presentan las funciones realizadas a lo largo del ejercicio
 
 # Importar paquetes
 
+# !pip install pyyaml
+
 import os
 import joblib
 import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+import yaml
+import random
 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_absolute_error
+
+# config.yaml
+with open("/Users/pablomartinez/Documents/Maestria/Primavera 2024/Métodos de Gran Escala/Tareas/Tarea 3 PMM/codigo/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
 
 # Funciones
 
@@ -58,7 +66,10 @@ def preprocess_data(data):
 def train_model(base_train, vector_train):
     '''Funcion para ejecutar el modelo
     '''
-    model = RandomForestRegressor()
+    random.seed(config['modeling']['random_seed'])
+    model = RandomForestRegressor(n_estimators=config['modeling']['random_forest']['n_estimators'],
+                                  max_depth=config['modeling']['random_forest']['max_depth'],
+                                  min_samples_split=config['modeling']['random_forest']['min_samples_split'])
     model.fit(base_train, vector_train)
     return model
 

@@ -1,0 +1,20 @@
+# config.yaml
+
+main:
+  components_repository: "https://github.com/pablomtzm9"
+  project_name: metodos_de_gran_escala
+  steps: all
+
+modeling:
+
+  # Fix this for reproducibility, change to have new splits
+  random_seed: 165680
+
+  # RandomForestRegressor. This is a subsample, but more could be added:
+  random_forest:
+    n_estimators: 163
+    max_depth: 7
+    min_samples_split: 4
+    
+    # DO not change the following
+    oob_score: true
