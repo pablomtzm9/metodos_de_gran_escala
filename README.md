@@ -14,12 +14,10 @@ print(sys.version)
 
 ### Dependencias:
 
-En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con dato sintéticos o tomar alguno otro como referencia, para poder desarrollar nuestra idea.
-
 ### Inputs/Outputs:
 
-* Inputs: Usaremos el [conjunto de precios de compra-venta de casas de la ciudad Ames, Iowa en Estados Unidos](https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/)
-* Outputs: Archivo de excel con las predicciones solicitadas.
+* En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con dato sintéticos o tomar alguno otro como referencia, para poder desarrollar nuestra idea.
+* Para lo cual usaremos el [conjunto de precios de compra-venta de casas de la ciudad Ames, Iowa en Estados Unidos](https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/)
 
 ### Estructura:
 ------------
@@ -27,35 +25,33 @@ En vista de que el CEO no tiene mucha claridad, podemos construir un dataset con
 La estructura del proyecto se ve de la siguiente forma:
 
 ```
-├── README.md
-├── data
-│   ├── base_general.csv
-│   ├── data_description.txt
-│   ├── descripcion
-│   ├── predicciones.xlsx
-│   ├── sample_submission.csv
-│   ├── test.csv
-│   └── train.csv
-├── models
-│   └── train_model.joblib
-├── notebooks
-│   └── 01_tarea_pablo_martinez.ipynb
-└── src
-    ├── inference.py
-    ├── prep.py
-    ├── scripts.py
-    └── train.py
+└── project
+    ├── .gitignore
+    ├── README.md
+    ├── src
+    │   ├── .gitkeep
+    │   ├── __init__.py
+    │   ├── module1.py
+    │   └── module2.py
+    ├── data
+    │   ├── raw.csv
+    │   └── clean.csv
+    ├── tests
+    │   ├── .gitkeep
+    │   ├── .test1.py
+    │   └── .test2.py
+    └── main_program.py
 ```
 
 ### Ejecución:
 ------------
 
-    pylint scripts.py
-    # Your code has been rated at 10.00/10 (previous run: 7.75/10, +2.25)
-    
+    cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+    py.test tests
+
 
 ### Instalación:
 ------------
 
-    pip install -r scripts.py
+    pip install -r requirements.txt
 
